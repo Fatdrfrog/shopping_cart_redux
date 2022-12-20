@@ -59,5 +59,6 @@ document
   .addEventListener("click", handleButtonClicked);
 
 function handleButtonClicked(event) {
+  console.log(event.target.id);
   addToCart(event.target.id);
 }
