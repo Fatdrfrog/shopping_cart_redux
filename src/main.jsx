@@ -1,14 +1,18 @@
 import intialProducts from "./api/products.json";
-import { addToCart } from "./actions";
+import { addToCart, clearCart } from "./actions";
 import { getState, subscribe } from "./store";
 
 import "./index.css";
 
 subscribe(() => {
   const cartProducts = getState().products;
-
-  console.log(getState().products);
   const cart = document.getElementById("cart");
+
+  const itemsInCart = cartProducts.filter((product) => product.inCart === 0);
+
+  if (itemsInCart.length === intialProducts.length) {
+    cart.innerHTML = "";
+  }
 
   cartProducts.forEach((product) => {
     if (product.inCart !== 0) {
@@ -61,4 +65,10 @@ document
 function handleButtonClicked(event) {
   console.log(event.target.id);
   addToCart(event.target.id);
+}
+
+document.getElementById("checkout").addEventListener("click", handleClearCart);
+
+function handleClearCart() {
+  clearCart();
 }

@@ -1,5 +1,5 @@
 import { dispatch, getState } from "../store";
-import { ADD_TO_CART } from "../actionTypes";
+import { ADD_TO_CART, CHECKOUT } from "../actionTypes";
 
 export const addToCart = (productId) => {
   if (
@@ -8,4 +8,8 @@ export const addToCart = (productId) => {
   ) {
     dispatch({ type: ADD_TO_CART, payload: productId });
   }
+};
+
+export const clearCart = () => {
+  dispatch({ type: CHECKOUT });
 };

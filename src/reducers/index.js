@@ -17,6 +17,13 @@ export const reducer = (state = initialState, action) => {
           } else return product;
         }),
       };
+    case "CHECKOUT":
+      return {
+        ...state,
+        products: state.products.map((product) => {
+          return { ...product, inCart: 0 };
+        }),
+      };
     default:
       return state;
   }
